@@ -1,0 +1,31 @@
+
+<div class="container" style="height:10vh">
+    <br>
+    <h1 class=" text-dark">{{title}}</h1>
+    <br>
+</div>
+<div class="container-lg" style="height:80vh;overflow-y:scroll;overflow-x: hidden;">
+    <div class="row g-5">
+        <div class="col-8 col-md-5 col-lg-4 col-xl-3 col-xxl-2" *ngFor="let itm of items">
+
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <h5 class="card-title">{{itm.name}}</h5>
+                </div>
+                <div class="card-body">
+
+                    <label class="form-label fw-bold d-block card-text">ID: {{itm.id}}</label>
+                    <label class="form-label fw-bold d-block card-text">Category: {{itm.itemType}}</label>
+                    <label class="form-label fw-bold d-block card-text">Price: {{itm.price}}</label>
+                    <hr>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary d-inline-block">Add to cart</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

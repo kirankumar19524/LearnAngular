@@ -1,0 +1,49 @@
+<nav *ngIf="isLoggedIn$ | async" class="navbar navbar-expand-lg bg-dark  sticky-top bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Angular learning</a>
+      
+      <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav align-items-center">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" *ngIf="isAdmin$ | async" href="#">Employees</a>
+          <a class="nav-link disabled">Disabled</a>
+        </div>
+        <form class="d-flex ms-auto justify-content-end" role="search">
+          <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+          <a class="text-white form-control-plaintext text-decoration-none text-lg-start me-2 mt-2" routerLink="/profile" *ngIf="userName$ | async as usr ">
+            <span class="bi la bi-person-check text-white" ></span>
+            Hello {{usr.username | titlecase}}! loggedin as {{usr.role}}</a>
+            <button class="btn btn-lg me-2" routerLink="/cart"><i class="bi bi-cart4 text-white position-relative" style="font-size: 20px;"><span class="position-absolute top-15 start-25 translate-middle badge rounded-pill" style="font-size: 12px;">
+              99  
+            </span></i></button>
+          <button class="btn btn-danger me-2" routerLink="/login" type="submit" (click)="onLogout()">Logout</button>
+          <!-- <button class="btn btn-outline-danger me-2" type="submit">Search</button> -->
+        </form>
+        
+      </div>
+      
+    </div>
+    
+  </nav>
+  
+  
+  
+  <!-- <nav class="navbar sticky-top bg-body-tertiary bg-secondary" style="height:10vh">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Sticky top</a>
+    </div>
+  </nav> -->
+  
+  
+  
+  
+  <!-- <nav class="navbar sticky-bottom bg-body-tertiary bg-secondary" style="height:5vh">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Sticky bottom</a>
+    </div>
+  </nav> -->
