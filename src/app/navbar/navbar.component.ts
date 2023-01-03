@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, observable, Observable } from 'rxjs';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { SignupService, User } from '../login/signup.service';
+import { CartService } from '../shared/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,14 +14,16 @@ export class NavbarComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
   isAdmin$: Observable<boolean>;
   userName$: Observable<User>;
+  cartCount$: Observable<number>;
   /**
    *
    */
-  constructor(private serv: SignupService) {
+  constructor(private serv: SignupService, private cartServ:CartService) {
 
     this.isLoggedIn$ = this.serv.isLoggedIn;
     this.isAdmin$ = this.serv.isAdmin;
     this.userName$ = this.serv.currentUsr;
+    this.cartCount$ = this.cartServ.getCartCount;
   }
   ngOnInit(): void {
     this.isLoggedIn$ = this.serv.isLoggedIn;
@@ -28,6 +31,7 @@ export class NavbarComponent implements OnInit {
     console.log(this.isLoggedIn$);
     this.isAdmin$ = this.serv.getAdmin;
     this.userName$ = this.serv.currentUsr;
+    this.cartCount$ = this.cartServ.getCartCount;
 // console.log("nav-bar: " + this.isAdmin$)
     //   if (sessionStorage.getItem('id') == null) {
     //     // this.loggedIn.next(false)
