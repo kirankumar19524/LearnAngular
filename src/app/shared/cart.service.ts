@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Item } from '../login/signup.service';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { Item } from '../login/signup.service';
 })
 export class CartService {
   private cartCount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
+  private cartDetails: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
   prodArr: Array<Item> = [];
   constructor() { }
 get getCartCount()
@@ -16,6 +16,9 @@ get getCartCount()
   if (ss && ss.length >0) {
     var obj = JSON.parse(ss) as Array<Item>;
     this.cartCount.next(obj.length)
+  }
+  else{
+    this.cartCount.next(0);
   }
   return this.cartCount.asObservable();
 }
@@ -31,12 +34,22 @@ get getCartCount()
     sessionStorage.setItem("products", JSON.stringify(this.prodArr));
   }
 
-  getItems(){
+  getItems():Observable<Item[]>{
     var ss = sessionStorage.getItem("products");
     if (ss && ss.length >0) {
-      return JSON.parse(ss);
+      var lst =  JSON.parse(ss).map((x: { checked: boolean; })=> {x.checked = false;
+        console.log(x);
+      return x;
+      });
+      console.log(lst);
+this.cartDetails.next(lst);
+
+      return this.cartDetails.asObservable();
     }
-    return [];
+    else{
+      this.cartDetails.next([]);
+    }
+    return this.cartDetails.asObservable();
   }
   removeItem(item:Item){
     var ss = sessionStorage.getItem("products");

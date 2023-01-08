@@ -125,4 +125,5 @@ export class Item {
   name?: string;
   itemType?: string;
   price?: string;
+  checked?: boolean;
 }

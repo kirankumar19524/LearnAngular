@@ -1,3 +1,22 @@
 <p>profile works!</p>
 
 <pre><label class="form-label" *ngIf="profileDetails | async as prof">{{prof | json}}</label></pre>
+
+<div class="container" *ngIf="profileDetails | async as proff">
+    <form>
+        <div>
+            <label class="form-label">Username: {{proff.username}}</label>
+        </div>
+        <div>
+            <label class="form-label">Email: {{proff.email}}</label>
+        </div>
+        <div class="">
+            <label class="">Password:&nbsp; </label>
+            <input type="password" class=" form-text form-control-plaintext w-auto" value="{{proff.password}}" />
+        
+        </div>
+        <div>
+            <label class="form-label">Role: {{proff.role}}</label>
+        </div>
+    </form>
+</div>

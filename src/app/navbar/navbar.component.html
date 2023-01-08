@@ -18,8 +18,8 @@
           <a class="text-white form-control-plaintext text-decoration-none text-lg-start me-2 mt-2" routerLink="/profile" *ngIf="userName$ | async as usr ">
             <span class="bi la bi-person-check text-white" ></span>
             Hello {{usr.username | titlecase}}! loggedin as {{usr.role}}</a>
-            <button class="btn btn-lg me-2" routerLink="/cart"><i class="bi bi-cart4 text-white position-relative" style="font-size: 20px;">
-              <span *ngIf="cartCount$ |async as ctn" class="position-absolute top-15 translate-middle badge rounded-pill" style="font-size: 12px;">
+            <button class="btn btn-lg me-2" routerLink="/cart"><i class="bi bi-cart4 text-white position-relative" style="font-size: 30px;">
+              <span *ngIf="cartCount$ |async as ctn" class="position-absolute top-15 translate-middle badge rounded-pill bg-warning" style="font-size: 12px;">
               {{ctn | number}}
             </span></i></button>
           <button class="btn btn-danger me-2" routerLink="/login" type="submit" (click)="onLogout()">Logout</button>

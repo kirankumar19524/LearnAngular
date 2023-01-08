@@ -54,8 +54,9 @@ export class NavbarComponent implements OnInit {
     // sessionStorage.removeItem('id');
     // sessionStorage.removeItem('currentUserRole');
     sessionStorage.clear();
-
+    
     this.serv.setLoggedIn(false);
+    this.cartCount$ = this.cartServ.getCartCount;
     // this.serv.getAdmin;
     // alert("log out")
   }
